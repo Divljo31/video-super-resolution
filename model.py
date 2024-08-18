@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[6]:
+# In[2]:
 
 
 import torch 
@@ -11,6 +11,13 @@ from torchvision import models
 
 
 # In[3]:
+
+
+LR_SIZE = 24
+HR_SIZE = 96
+
+
+# In[4]:
 
 
 class ResidualBlock(nn.Module):
@@ -31,7 +38,7 @@ class ResidualBlock(nn.Module):
         return x + res
 
 
-# In[4]:
+# In[5]:
 
 
 class Generator(nn.Module):
@@ -39,6 +46,8 @@ class Generator(nn.Module):
         super(Generator, self).__init__()
         self.conv1 = nn.Conv2d(3, 64, kernel_size=9, stride=1, padding=4)
         self.relu = nn.LeakyReLU(0.2, inplace=True)
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.to(self.device) 
         
         # Residual blocks
         self.residual_blocks = nn.Sequential(
@@ -74,7 +83,7 @@ class Generator(nn.Module):
         
 
 
-# In[5]:
+# In[6]:
 
 
 class Discriminator(nn.Module):

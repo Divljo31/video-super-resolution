@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[2]:
 
 
 import time
@@ -15,7 +15,7 @@ from torch.optim.lr_scheduler import StepLR
 import os
 
 
-# In[2]:
+# In[3]:
 
 
 class Trainer:
@@ -115,11 +115,15 @@ class Trainer:
             print(f'Model restored from checkpoint with PSNR: {self.best_psnr:.3f}')
 
 
-# In[3]:
+# In[4]:
+
+
 class SrganGeneratorTrainer(Trainer):
     def __init__(self, model, checkpoint_dir, learning_rate=1e-4):
         super().__init__(model, loss=nn.MSELoss(), learning_rate=learning_rate, checkpoint_dir=checkpoint_dir)
 
+
+# In[9]:
 
 
 class SrganTrainer:
