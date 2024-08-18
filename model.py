@@ -142,7 +142,16 @@ class Discriminator(nn.Module):
         x = self.block4(x)
         x = self.block5(x)
         x = self.block6(x)
-        x = self.block7
+        x = self.block7(x)
+        x = self.block8(x)
+        x = self.flatten(x)
+        x = self.fc1(x)
+        x = self.leaky_relu(x)
+        x = self.fc2(x)
+        x = self.sigmoid(x)
+        return x
+        
+        
 
 
 # In[7]:
